@@ -7,6 +7,8 @@ djangorestframework==3.14.0
 geojson==2.5.0
 idna==3.4
 Markdown==3.4.3
+Pillow==9.5.0
+psycopg2==2.9.6
 pyowm==3.3.0
 PySocks==1.7.1
 pytz==2023.3

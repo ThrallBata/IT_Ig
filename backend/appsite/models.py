@@ -25,10 +25,13 @@ class Message(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Клиент')
-    description = models.TextField(max_length=1000, verbose_name='Клиент')
-    resource = models.CharField(max_length=200, verbose_name='Клиент')
-    photo = models.ImageField(upload_to="photo/%Y/%m/%d/", verbose_name='Клиент')
+    name = models.CharField(max_length=50, verbose_name='Имя')
+    description = models.TextField(max_length=1000, verbose_name='Описание')
+    resource = models.CharField(max_length=200, verbose_name='Ресурсы')
+    photo = models.ImageField(upload_to="photo/%Y/%m/%d/", verbose_name='Фото')
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):

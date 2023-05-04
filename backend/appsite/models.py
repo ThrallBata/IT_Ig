@@ -38,7 +38,7 @@ class Order(models.Model):
     name = models.CharField(max_length=50, verbose_name='Клиент')
     description = models.TextField(max_length=1000, verbose_name='Клиент')
     status = models.BooleanField()
-    project_id = models.ForeignKey('Project', on_delete=models.CASCADE, verbose_name='Проект')
+    project_id = models.ForeignKey('Project', on_delete=models.CASCADE, null=True, verbose_name='Проект')
     client_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Клиент')
 
 

@@ -19,9 +19,11 @@ from django.conf.urls.static import static
 
 from django.conf import settings
 from appsite.views import ProjectAPIView
+from chat.views import chat_box
 
 urlpatterns = [
     path('', include('appsite.urls')),
+    path("chat/<str:chat_box_name>/", chat_box, name="chat"),
     path('admin/', admin.site.urls),
     path('api/v1/progectlist/', ProjectAPIView.as_view()),
     path('api/v1/auth/', include('djoser.urls')),  # new

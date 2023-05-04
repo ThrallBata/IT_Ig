@@ -1,0 +1,50 @@
+@import "src/app/app.component";
+
+.header {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    .header-menu {
+      display: flex;
+      align-items: center;
+      .burger-icon {
+        margin-right: 30px;
+        cursor: pointer;
+      }
+      .menu-items {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        .menu-item {
+          margin-left: 40px;
+          a {
+            color: #fff;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      button {
+        margin-left: 20px;
+      }
+      .login-btn, .logout-btn {
+        background-color: transparent;
+        border: 3px solid #2E9CCA;
+        height: 40px;
+        width: 78px;
+      }
+      .register-btn {
+        width: 150px;
+        height: 40px;
+      }
+      .profile-btn {
+        padding: 11px 12px 10px 12px;
+      }
+    }
+  }
+}

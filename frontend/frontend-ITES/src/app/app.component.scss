@@ -1,0 +1,21 @@
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.btn {
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  background-color: #2E9CCA;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.round-btn {
+  border-radius: 50%;
+  background-color: #2E9CCA;
+  border: none;
+  cursor: pointer;
+}

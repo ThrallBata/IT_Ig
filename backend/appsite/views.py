@@ -15,6 +15,7 @@ class ProjectAPIView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
 
 
+
 def index(request):
 
     return render(request, 'appsite/index.html')

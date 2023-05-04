@@ -18,10 +18,10 @@ class Chat(models.Model):
 
 
 class Message(models.Model):
-    chat_id = models.ForeignKey('Chat', on_delete=models.CASCADE, verbose_name='Чат')
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
-    content = models.TextField(max_length=1000, verbose_name='Клиент')
-    file = models.FileField(upload_to="file/%Y/%m/%d/", verbose_name='Клиент')# необязательно
+    chat_id = models.ForeignKey('Chat', on_delete=models.CASCADE, null=True, verbose_name='Чат')
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, verbose_name='Пользователь')
+    content = models.TextField(max_length=1000, verbose_name='Контент')
+    file = models.FileField(upload_to="file/%Y/%m/%d/", null=True, verbose_name='Файл')# необязательно
 
 
 class Project(models.Model):

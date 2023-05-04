@@ -18,14 +18,17 @@ from django.urls import include, path, re_path
 from django.conf.urls.static import static
 
 from django.conf import settings
-from appsite.views import ProjectAPIView
-from chat.views import room
+
+from chat import routing
+from chat.views import MessageList
 
 urlpatterns = [
     path('', include('appsite.urls')),
     path('chat/', include('chat.urls')),
+    path('messages/', MessageList.as_view()),
+    path('api/', include('chat.urls')),
+    path('ws/', include(routing.websocket_urlpatterns)),
     path('admin/', admin.site.urls),
-    path('api/v1/progectlist/', ProjectAPIView.as_view()),
     path('api/v1/auth/', include('djoser.urls')),  # new
     re_path(r'^auth/', include('djoser.urls.authtoken')),  # new
 

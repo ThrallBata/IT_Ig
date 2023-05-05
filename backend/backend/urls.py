@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 
 from django.conf import settings
 
-from chat import routing
+from . import routing
 from chat.views import MessageList
 
 urlpatterns = [

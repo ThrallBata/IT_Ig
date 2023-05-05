@@ -26,7 +26,6 @@ urlpatterns = [
     path('', include('appsite.urls')),
     path('chat/', include('chat.urls')),
     path('api/v1/messages/', MessageList.as_view()),
-    path('api/', include('chat.urls')),
     path('ws/', include(routing.websocket_urlpatterns)),
     path('admin/', admin.site.urls),
     path('api/v1/auth/', include('djoser.urls')),

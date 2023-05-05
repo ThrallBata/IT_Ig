@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework import generics
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-
-from appsite.models import Message
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+from appsite.models import Message, User
 from .serializers import MessageSerializer
 
 
@@ -10,6 +13,7 @@ class MessageList(generics.ListCreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
 
     def get_queryset(self):
         """
@@ -20,12 +24,27 @@ class MessageList(generics.ListCreateAPIView):
         return Message.objects.filter(user_id=user)
 
 
-def index(request):
+class ChatAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
 
-    return render(request, "chat/index.html")
+    def get(self, request):
+        user_id = Token.objects.get(key=request.auth.key).user_id
+        return Response({'user': user_id})
+
+    def post(self, request):
+        pass
+        # return Response({'title': 'Jennifer Shrader Lawrence'})
+
+
+def index(request):
+    user = request.user
+    return render(request, "chat/index.html", {'user': user})
 
 
 def room(request, room_name):
-    return render(request, "chat/room.html", {"room_name": room_name})
+    if str(request.user) == str(room_name):
+        return render(request, "chat/room.html", {"room_name": room_name})
+    else:
+        return redirect('start-chat')
 
 

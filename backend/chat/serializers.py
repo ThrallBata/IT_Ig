@@ -5,5 +5,5 @@ from appsite.models import Message
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
-        fields = ('id', 'user_id', 'content', )
-        read_only_fields = ('id', 'user_id')
+        fields = ('id', 'user', 'content', )
+        read_only_fields = ('id',)

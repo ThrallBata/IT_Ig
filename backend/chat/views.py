@@ -20,12 +20,19 @@ class MessageList(generics.ListCreateAPIView):
         Фильтруем сообщения по пользователю который отправил запрос
         """
         user = self.request.user
-        print(self.request.user)
+        print(self.request.user.id)
         return Message.objects.filter(user_id=user)
+
+    def perform_create(self, serializer):
+        user_id = Token.objects.get(key=self.request.auth.key).user_id
+        user = get_object_or_404(User, id=user_id)
+        print(user)
+        return serializer.save(user=user)
 
 
 class ChatAPIView(APIView):
     permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
 
     def get(self, request):
         user_id = Token.objects.get(key=request.auth.key).user_id

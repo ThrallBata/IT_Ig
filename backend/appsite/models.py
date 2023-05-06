@@ -8,8 +8,8 @@ class User(AbstractUser):
     surname = models.CharField(max_length=30, null=True, verbose_name='Отчество')
     phone_number = models.CharField(max_length=30, null=True, verbose_name='Номер телефона')
 
-    # def __str__(self):
-    #     return self.username
+    def __str__(self):
+        return self.username
 
 
 class Chat(models.Model):

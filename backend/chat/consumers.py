@@ -21,11 +21,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
     @database_sync_to_async
-    def create_message(self, message): #def create_message(self, message, user_id):
+    def create_message(self, message, user): #def create_message(self, message, user_id):
         message_obj = Message.objects.create(
             content=message,
-
-            # user_id=user_id
+            user_id=int(user)
         )
         return message_obj
 
@@ -33,10 +32,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         data = json.loads(text_data)
         print(data)
         message = data['message']
-        # user_id = data['user_id']
+        user = data['room']
 
         # Create a new message object and save it to the database
-        message_obj = await self.create_message(message)# message_obj = await self.create_message(message, user_id)
+        message_obj = await self.create_message(message, user)# message_obj = await self.create_message(message, user_id)
 
         # Send the message to the group
         await self.channel_layer.group_send(
@@ -44,16 +43,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
             {
                 'type': 'chat_message',
                 'message': message_obj.content,
-                # 'user_id': message_obj.user_id,
+                'user': message_obj.user_id,
             }
         )
 
     async def chat_message(self, event):
         message = event['message']
-        # user_id = event['user_id']
+        user = event['user']
 
         # Send the message to the websocket
         await self.send(text_data=json.dumps({
             'message': message,
-            # 'user_id': user_id,
+            'user': user,
         }))

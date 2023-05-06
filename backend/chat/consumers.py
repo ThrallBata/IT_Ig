@@ -24,7 +24,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def create_message(self, message, user): #def create_message(self, message, user_id):
         message_obj = Message.objects.create(
             content=message,
-            user=user
+            user_id=int(user)
         )
         return message_obj
 
@@ -43,7 +43,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             {
                 'type': 'chat_message',
                 'message': message_obj.content,
-                'user': message_obj.user,
+                'user': message_obj.user_id,
             }
         )
 

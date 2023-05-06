@@ -13,7 +13,7 @@ class MessageList(generics.ListCreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (TokenAuthentication,) #token-only access
 
     def get_queryset(self):
         """
@@ -30,9 +30,9 @@ class MessageList(generics.ListCreateAPIView):
         return serializer.save(user=user)
 
 
-class ChatAPIView(APIView):
+class UserChatAPIView(APIView):
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
+    # authentication_classes = (TokenAuthentication,)#token-only access
 
     def get(self, request):
         user_id = Token.objects.get(key=request.auth.key).user_id
@@ -44,12 +44,12 @@ class ChatAPIView(APIView):
 
 
 def index(request):
-    user = request.user
+    user = request.user.id
     return render(request, "chat/index.html", {'user': user})
 
 
 def room(request, room_name):
-    if str(request.user) == str(room_name):
+    if str(request.user.id) == str(room_name):
         return render(request, "chat/room.html", {"room_name": room_name})
     else:
         return redirect('start-chat')

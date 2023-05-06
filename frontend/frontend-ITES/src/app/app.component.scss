@@ -10,7 +10,7 @@
   background-color: #2E9CCA;
   border: none;
   cursor: pointer;
-  font-weight: bold;
+  font-family: "Museo Sans Cyrl 900", sans-serif;
 }
 
 .round-btn {
@@ -18,4 +18,21 @@
   background-color: #2E9CCA;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.input {
+  outline: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: "Museo Sans Cyrl 300", sans-serif;
+  border: 1px solid #2E9CCA;
+  padding: 10px;
+  &::placeholder {
+    color: #B8B8B8;
+  }
 }

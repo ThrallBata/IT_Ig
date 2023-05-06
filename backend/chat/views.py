@@ -29,20 +29,6 @@ class MessageList(generics.ListCreateAPIView):
         print(user)
         return serializer.save(user=user)
 
-
-class UserChatAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
-    # authentication_classes = (TokenAuthentication,)#token-only access
-
-    def get(self, request):
-        user_id = Token.objects.get(key=request.auth.key).user_id
-        return Response({'user': user_id})
-
-    def post(self, request):
-        pass
-        # return Response({'title': 'Jennifer Shrader Lawrence'})
-
-
 def index(request):
     user = request.user.id
     return render(request, "chat/index.html", {'user': user})

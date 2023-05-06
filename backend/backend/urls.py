@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from . import routing
-from chat.views import MessageList
+from chat.views import *
 
 urlpatterns = [
     path('', include('appsite.urls')),
@@ -30,6 +30,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
+    path("", index, name="start-chat"),
+    path("<str:room_name>/", room, name="room"),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

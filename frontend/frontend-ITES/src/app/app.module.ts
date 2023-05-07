@@ -14,6 +14,7 @@ import { ProjectItemComponent } from './components/project-item/project-item.com
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ChatPageComponent } from './pages/chat-page/chat-page.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChatPageComponent } from './pages/chat-page/chat-page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

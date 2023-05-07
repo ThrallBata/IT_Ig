@@ -19,17 +19,13 @@ from django.conf.urls.static import static
 
 from django.conf import settings
 
-from chat import routing
-from chat.views import MessageList
 
 urlpatterns = [
-    path('', include('appsite.urls')),
-    path('chat/', include('chat.urls')),
-    path('api/v1/messages/', MessageList.as_view()),
-    path('ws/', include(routing.websocket_urlpatterns)),
     path('admin/', admin.site.urls),
-    path('api/v1/auth/', include('djoser.urls')),
-    re_path(r'^auth/', include('djoser.urls.authtoken')),
+    path('', include('appsite.urls')),
+    path('', include('chat.urls')),
+    path('admin/', admin.site.urls),
+
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

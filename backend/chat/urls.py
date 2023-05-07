@@ -1,11 +1,13 @@
-from django.urls import path
+from django.urls import path, include
+
 from .views import *
-from django.contrib.auth.views import LoginView, LogoutView
+from .routing import *
 
 urlpatterns = [
-    path("", index, name="start-chat"),
-    path("1/admin/", UserChatAPIView.as_view(), name='chat-user'),
-    # path("<str:room_name>/", ChatAPIView.as_view(), name='chat-user'),
-    path("<str:room_name>/", room, name="room"),
+    path("chat/", index, name="start-chat"),
+    path("chat/<str:room_name>/", room, name="room"),
+    path("api/userid", UserByTokenAPIView.as_view(), name='chat-user'),
+    path("api/messages/", MessageAPIList.as_view()),
+    path('ws/', include(websocket_urlpatterns)),
 ]
 

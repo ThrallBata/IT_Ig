@@ -9,7 +9,7 @@ from appsite.models import Message, User
 from .serializers import MessageSerializer
 
 
-class MessageList(generics.ListCreateAPIView):
+class MessageAPIList(generics.ListCreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     permission_classes = (IsAuthenticated,)
@@ -30,17 +30,13 @@ class MessageList(generics.ListCreateAPIView):
         return serializer.save(user=user)
 
 
-class UserChatAPIView(APIView):
+class UserByTokenAPIView(APIView):
     permission_classes = (IsAuthenticated,)
-    # authentication_classes = (TokenAuthentication,)#token-only access
+    authentication_classes = (TokenAuthentication,)#token-only access
 
     def get(self, request):
         user_id = Token.objects.get(key=request.auth.key).user_id
-        return Response({'user': user_id})
-
-    def post(self, request):
-        pass
-        # return Response({'title': 'Jennifer Shrader Lawrence'})
+        return Response({'user_id': user_id})
 
 
 def index(request):

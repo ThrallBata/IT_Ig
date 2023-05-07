@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from appsite.models import Message, User
@@ -34,9 +35,10 @@ def index(request):
 
 
 def room(request, room_name):
-    if str(request.user.id) == str(room_name):
-        return render(request, "chat/room.html", {"room_name": room_name})
-    else:
-        return redirect('start-chat')
+    return render(request, "chat/room.html", {"room_name": room_name})
+    # if str(request.user.id) == str(room_name):
+    #     return render(request, "chat/room.html", {"room_name": room_name})
+    # else:
+    #     return redirect('start-chat')
 
 

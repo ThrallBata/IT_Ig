@@ -34,6 +34,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = data['message']
         user = data['room']
 
+
+
+
         # Create a new message object and save it to the database
         message_obj = await self.create_message(message, user)# message_obj = await self.create_message(message, user_id)
 

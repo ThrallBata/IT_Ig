@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from django.conf import settings
-
 
 class User(AbstractUser):
     surname = models.CharField(max_length=30, null=True, verbose_name='Отчество')

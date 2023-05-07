@@ -13,8 +13,8 @@ class User(AbstractUser):
 
 
 class Chat(models.Model):
-    staff_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='staff', verbose_name='Работник')
-    client_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
+    staff = models.ForeignKey(User, on_delete=models.CASCADE, related_name='staff', verbose_name='Работник')
+    client = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
 
 
 class Message(models.Model):
@@ -34,11 +34,18 @@ class Project(models.Model):
         return self.name
 
 
+class OrderStatus(models.Model):
+    status = models.CharField(max_length=50, verbose_name='Статус')
+
+    def __str__(self):
+        return self.status
+
+
 class Order(models.Model):
     name = models.CharField(max_length=50, verbose_name='Клиент')
     description = models.TextField(max_length=1000, verbose_name='Описание')
-    status = models.BooleanField()#таблица с полем вариантами состояния и как вторичный ключ
-    project_id = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, verbose_name='Проект')
-    client_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
+    status = models.ForeignKey(OrderStatus, on_delete=models.CASCADE, default=1, verbose_name='Статус')#таблица с полем вариантами состояния и как вторичный ключ
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, verbose_name='Проект')
+    client = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
 
 

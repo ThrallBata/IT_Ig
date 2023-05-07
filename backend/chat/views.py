@@ -1,9 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from appsite.models import Message, User
 from .serializers import MessageSerializer
@@ -28,15 +26,6 @@ class MessageAPIList(generics.ListCreateAPIView):
         user = get_object_or_404(User, id=user_id)
         print(user)
         return serializer.save(user=user)
-
-
-class UserByTokenAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)#token-only access
-
-    def get(self, request):
-        user_id = Token.objects.get(key=request.auth.key).user_id
-        return Response({'user_id': user_id})
 
 
 def index(request):

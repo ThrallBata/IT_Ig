@@ -12,6 +12,8 @@ import { ChatComponent } from './components/chat/chat.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ProjectItemComponent } from './components/project-item/project-item.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { ChatPageComponent } from './pages/chat-page/chat-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { OrderItemComponent } from './components/order-item/order-item.component
     ChatComponent,
     LoginFormComponent,
     ProjectItemComponent,
-    OrderItemComponent
+    OrderItemComponent,
+    RegisterPageComponent,
+    ChatPageComponent
   ],
   imports: [
     BrowserModule,

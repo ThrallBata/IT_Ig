@@ -1,0 +1,28 @@
+@import "src/app/app.component";
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 50px;
+  .main-text {
+    .title {
+      color: #fff;
+      font-size: 55px;
+      font-family: "Museo Sans Cyrl 900", sans-serif;
+      width: 380px;
+      margin-bottom: 30px;
+    }
+    .info {
+      color: #AAABB8;
+      font-size: 18px;
+      font-family: "Museo Sans Cyrl 300", sans-serif;
+      margin-bottom: 50px;
+    }
+    .main-btn {
+      width: 260px;
+      height: 70px;
+      font-size: 18px;
+    }
+  }
+}

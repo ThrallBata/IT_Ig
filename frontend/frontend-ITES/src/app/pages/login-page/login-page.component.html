@@ -1,1 +1,11 @@
-<p>login-page works!</p>
+<div class="login-container">
+  <div class="login-title">Авторизация</div>
+  <form action="" class="login-form">
+    <input type="text" class="input login-input" placeholder="Логин">
+    <div class="password-input-container">
+      <input type="password" class="input login-input" placeholder="Пароль">
+      <a href="/forgotpassword" class="forgot-password-link">Забыли пароль?</a>
+    </div>
+    <button type="button" class="btn login-btn" (click)="loginService.login()">Войти</button>
+  </form>
+</div>

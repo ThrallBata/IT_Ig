@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'app-navigation',
@@ -7,6 +9,21 @@ import { Component } from '@angular/core';
 })
 export class NavigationComponent {
 
-  isAuth = false;
+  constructor(private router: Router, public loginService: LoginService) {
+  }
+
+  isMenuOpened = false;
+
+  loginBtn() {
+    this.router.navigate(['login']);
+  }
+
+  profileBtn() {
+    this.router.navigate(['profile']);
+  }
+
+  registerBtn() {
+    this.router.navigate(['register']);
+  }
 
 }

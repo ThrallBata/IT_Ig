@@ -1,0 +1,44 @@
+@import "src/app/app.component";
+
+.projects-page-container {
+  padding: 50px 0;
+  .projects-title {
+    font-size: 36px;
+    color: #fff;
+    font-family: "Museo Sans Cyrl 900", sans-serif;
+    margin-bottom: 10px;
+  }
+  .projects {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .project-item {
+      max-width: 360px;
+      margin: 10px 0;
+      .item-image {
+        width: 360px;
+        height: 200px;
+        background-color: #AAABB8;
+        border-radius: 10px;
+      }
+      .item-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        .item-title {
+          font-size: 14px;
+          color: #fff;
+          max-width: 200px;
+        }
+        .item-btn {
+          width: 120px;
+          height: 25px;
+          border-radius: 5px;
+          font-size: 12px;
+          font-family: "Museo Sans Cyrl 900", sans-serif;
+        }
+      }
+    }
+  }
+}

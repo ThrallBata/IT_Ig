@@ -55,18 +55,34 @@ class OrderConfimAPIUpdate(generics.UpdateAPIView):
 
 class OrderListAPIView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
-    serializer_class = OrderListSerializer
+    serializer_class = OrderSerializer
     permission_classes = (IsAdminUser,)
     authentication_classes = (TokenAuthentication,)
 
 
-class UserByTokenAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)#token-only access
+class OrderChangeAPIUpdate(generics.UpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = (IsAdminUser,)
+    authentication_classes = (TokenAuthentication,)
 
-    def get(self, request):
-        user_id = Token.objects.get(key=request.auth.key).user_id
-        return Response({'user_id': user_id})
+    def get_queryset(self):
+        """
+        Фильтруем заказы по пользователю который отправил запрос
+        """
+        user = self.request.user
+        if User.objects.get(id=int(user.id)).is_staff == True:
+            return Order.objects.all()
+        return Order.objects.filter(client_id=user)
+
+
+# # class UserByTokenAPIView(APIView):
+# #     permission_classes = (IsAuthenticated,)
+# #     authentication_classes = (TokenAuthentication,)#token-only access
+#
+#     def get(self, request):
+#         user_id = Token.objects.get(key=request.auth.key).user_id
+#         return Response({'user_id': user_id})
 
 
 def index(request):

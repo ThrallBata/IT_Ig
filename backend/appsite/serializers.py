@@ -11,13 +11,8 @@ class ProjectSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('id', 'name', 'description', 'status', 'client')
-
-
-class OrderListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Order
         fields = ('__all__')
+        read_only_fields = ('id', 'client')
 
 
 class OrderConfimSerializer(serializers.ModelSerializer):

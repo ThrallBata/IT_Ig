@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from .models import *
 from .serializers import *
@@ -29,7 +29,6 @@ class OrderAPIView(generics.ListCreateAPIView):
         Фильтруем заказы по пользователю который отправил запрос
         """
         user = self.request.user
-        print(self.request.user.id)
         return Order.objects.filter(client_id=user)
 
     def perform_create(self, serializer):
@@ -42,6 +41,22 @@ class OrderConfimAPIUpdate(generics.UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderConfimSerializer
     permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+
+    def get_queryset(self):
+        """
+        Фильтруем заказы по пользователю который отправил запрос
+        """
+        user = self.request.user
+        if User.objects.get(id=int(user.id)).is_staff == True:
+            return Order.objects.all()
+        return Order.objects.filter(client_id=user)
+
+
+class OrderListAPIView(generics.ListCreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderListSerializer
+    permission_classes = (IsAdminUser,)
     authentication_classes = (TokenAuthentication,)
 
 

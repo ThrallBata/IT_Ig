@@ -21,9 +21,10 @@ def ChatAPIView(request, chat_id=None):
     if (userRecord.is_staff):
         if (chat_id):
             try:
-                chatRecord = Message.objects.get(pk=int(chat_id))
+                messageRecord = Message.objects.get(pk=int(chat_id))
             except:
                 return Response(data="Error: chat cannot be found", status=status.HTTP_400_BAD_REQUEST)
+            Chat.objects.filter(pk=int(chat_id)).update(status_view=True)
             return Response(MessageSerializer(Message.objects.filter(chat=int(chat_id)), many=True).data)
         return Response(ChatSerializer(Chat.objects.all(), many=True).data)
     else:
@@ -31,6 +32,7 @@ def ChatAPIView(request, chat_id=None):
             chatRecord = Chat.objects.get(client=int(request.user.id))
         except:
             chatRecord = Chat.objects.create(client_id=int(request.user.id), staff=None)
+            Message.objects.create(user_id=1, content="Здравствуете, можете задать свои вопросы. Работник свяжется с вами в ближайшее время.", chat_id=chatRecord.id)
         return Response(MessageSerializer(Message.objects.filter(chat=int(chatRecord.pk)), many=True).data)
 
 

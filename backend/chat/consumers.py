@@ -2,12 +2,12 @@ import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.layers import get_channel_layer
 from channels.db import database_sync_to_async
-from appsite.models import Message
+from appsite.models import Message, Chat
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.user = self.scope["user"]
+        #self.user = self.scope["user"]
         self.room_group_name = 'chat'
         await self.channel_layer.group_add(
             self.room_group_name,
@@ -28,6 +28,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             user_id=int(user),
             chat_id=int(chat)
         )
+        Chat.objects.filter(pk=int(chat)).update(status_view=True)
         return message_obj
 
     async def receive(self, text_data):

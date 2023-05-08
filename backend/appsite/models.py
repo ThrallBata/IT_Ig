@@ -12,7 +12,7 @@ class User(AbstractUser):
 
 class Chat(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE, related_name='staff', null=True, verbose_name='Работник')
-    client = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')#неважно
+    client = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
     status_view = models.BooleanField(default=False)
 
 

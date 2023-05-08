@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
-from appsite.models import Message, User
+from appsite.models import Message, User, Chat
 from .serializers import MessageSerializer
 
 
@@ -21,6 +21,7 @@ class MessageList(generics.ListCreateAPIView):
         """
         user = self.request.user
         print(self.request.user.id)
+        
         return Message.objects.filter(user_id=user)
 
     def perform_create(self, serializer):
@@ -29,15 +30,15 @@ class MessageList(generics.ListCreateAPIView):
         print(user)
         return serializer.save(user=user)
 
-def index(request):
-    user = request.user.id
-    return render(request, "chat/index.html", {'user': user})
+# def index(request):
+#     user = request.user.id
+#     return render(request, "chat/index.html", {'user': user})
 
 
-def room(request, room_name):
-    if str(request.user.id) == str(room_name):
-        return render(request, "chat/room.html", {"room_name": room_name})
-    else:
-        return redirect('start-chat')
+# def room(request, room_name):
+#     if str(request.user.id) == str(room_name):
+#         return render(request, "chat/room.html", {"room_name": room_name})
+#     else:
+#         return redirect('start-chat')
 
 

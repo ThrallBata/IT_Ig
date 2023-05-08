@@ -9,9 +9,10 @@ class MessageSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'user')
 
 
-class ChatListSerializer(serializers.ModelSerializer):
+class ChatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chat
-        fields =('__all__')
+        fields = ('id', 'client', 'staff', )
+        read_only_fields = ('id',)
 
 

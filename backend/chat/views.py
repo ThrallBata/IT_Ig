@@ -35,6 +35,16 @@ def ChatAPIView(request, chat_id=None):
             Message.objects.create(user_id=1, content="Здравствуете, можете задать свои вопросы. Работник свяжется с вами в ближайшее время.", chat_id=chatRecord.id)
         return Response(MessageSerializer(Message.objects.filter(chat=int(chatRecord.pk)), many=True).data)
 
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 
 def index(request):
     user = request.user.id

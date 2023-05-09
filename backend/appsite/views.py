@@ -83,6 +83,12 @@ class OrderChangeAPIUpdate(generics.UpdateAPIView):
 #     def get(self, request):
 #         user_id = Token.objects.get(key=request.auth.key).user_id
 #         return Response({'user_id': user_id})
+#
+#
+#
+#
+#
+#
 
 
 def index(request):

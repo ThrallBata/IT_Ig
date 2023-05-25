@@ -1,33 +1,51 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authtoken.models import Token
-from appsite.models import Message, User
-from .serializers import MessageSerializer
+from rest_framework.response import Response
+from appsite.models import Message, User, Chat
+from .serializers import MessageSerializer, ChatSerializer
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework import status
+from rest_framework.renderers import JSONRenderer
 
 
-class MessageAPIList(generics.ListCreateAPIView):
-    queryset = Message.objects.all()
-    serializer_class = MessageSerializer
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,) #token-only access
+@api_view(['GET'])
+@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication,])
+def ChatAPIView(request, chat_id=None):
+    try:
+        userRecord = User.objects.get(pk=int(request.user.id))
+    except:
+        return Response(data="Error: user cannot be found", status=status.HTTP_400_BAD_REQUEST)
+    if (userRecord.is_staff):
+        if (chat_id):
+            try:
+                chatRecord = Chat.objects.get(pk=int(chat_id))
+            except:
+                return Response(data="Error: chat cannot be found", status=status.HTTP_400_BAD_REQUEST)
+            Chat.objects.filter(pk=int(chat_id)).update(status_view=True)
+            return Response(MessageSerializer(Message.objects.filter(chat=int(chat_id)), many=True).data)
+        return Response(ChatSerializer(Chat.objects.all(), many=True).data)
+    else:
+        try:
+            chatRecord = Chat.objects.get(client=int(request.user.id))
+        except:
 
-    def get_queryset(self):
-        """
-        Фильтруем сообщения по пользователю который отправил запрос
-        """
-        user = self.request.user
-        print(self.request.user.id)
-        return Message.objects.filter(user_id=user)
+            chatRecord = Chat.objects.create(client_id=int(request.user.id), staff=None)
+            Message.objects.create(user_id=1, content="Здравствуете, можете задать свои вопросы. Работник свяжется с вами в ближайшее время.", chat_id=chatRecord.id)
+        return Response(MessageSerializer(Message.objects.filter(chat=int(chatRecord.pk)), many=True).data)
 
-    def perform_create(self, serializer):
-        user_id = Token.objects.get(key=self.request.auth.key).user_id
-        user = get_object_or_404(User, id=user_id)
-        print(user)
-        return serializer.save(user=user)
-
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 
 def index(request):
     user = request.user.id

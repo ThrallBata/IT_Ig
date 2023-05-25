@@ -11,8 +11,9 @@ class User(AbstractUser):
 
 
 class Chat(models.Model):
-    staff = models.ForeignKey(User, on_delete=models.CASCADE, related_name='staff', verbose_name='Работник')
+    staff = models.ForeignKey(User, on_delete=models.CASCADE, related_name='staff', null=True, verbose_name='Работник')
     client = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
+    status_view = models.BooleanField(default=False)
 
 
 class Message(models.Model):
@@ -40,10 +41,11 @@ class OrderStatus(models.Model):
 
 
 class Order(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Клиент')
+    name = models.CharField(max_length=50, verbose_name='Название заказа')
     description = models.TextField(max_length=1000, verbose_name='Описание')
     status = models.ForeignKey(OrderStatus, on_delete=models.CASCADE, default=1, verbose_name='Статус')#таблица с полем вариантами состояния и как вторичный ключ
     project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, verbose_name='Проект')
     client = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
+    file = models.FileField(upload_to="file/%Y/%m/%d/", null=True, verbose_name='Договор')
 
 

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./order-item.component.scss']
 })
 export class OrderItemComponent {
-
+  details = false;
 }

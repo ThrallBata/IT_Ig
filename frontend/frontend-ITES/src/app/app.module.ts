@@ -15,6 +15,8 @@ import { OrderItemComponent } from './components/order-item/order-item.component
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ChatPageComponent } from './pages/chat-page/chat-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import { MessageComponent } from './components/message/message.component';
+import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {HttpClientModule} from "@angular/common/http";
     ProjectItemComponent,
     OrderItemComponent,
     RegisterPageComponent,
-    ChatPageComponent
+    ChatPageComponent,
+    MessageComponent,
+    CreateOrderFormComponent
   ],
   imports: [
     BrowserModule,

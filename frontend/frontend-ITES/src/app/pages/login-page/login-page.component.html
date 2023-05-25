@@ -6,6 +6,7 @@
       <input type="password" class="input login-input" placeholder="Пароль" #password>
       <a href="/forgotpassword" class="forgot-password-link">Забыли пароль?</a>
     </div>
-    <button type="button" class="btn login-btn" (click)="loginService.testLogin(login.value, password.value)">Войти</button>
+    <button type="button" class="btn login-btn" (click)="testLogin(login.value, password.value)">Войти</button>
+<!--    <button type="button" class="btn login-btn" (click)="getUserId();">Получить id</button>-->
   </form>
 </div>

@@ -26,4 +26,12 @@ export class NavigationComponent {
     this.router.navigate(['register']);
   }
 
+  isAuthorized(): boolean {
+    return this.loginService.isAuthorized();
+  }
+
+  logout() {
+    return this.loginService.logout();
+  }
+
 }

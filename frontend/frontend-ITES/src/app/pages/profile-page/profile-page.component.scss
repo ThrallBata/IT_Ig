@@ -1,0 +1,39 @@
+@import "src/app/app.component";
+
+.profile-page-container {
+  padding: 50px 0;
+  .profile-title {
+    font-size: 36px;
+    color: #fff;
+    font-family: "Museo Sans Cyrl 900", sans-serif;
+    margin-bottom: 30px;
+  }
+  .user-info {
+    .user-name, .user-email, .user-phone {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+  }
+  .user-orders-container {
+    padding-top: 10px;
+    .orders-title {
+      font-size: 24px;
+      color: #fff;
+      font-family: "Museo Sans Cyrl 900", sans-serif;
+      margin-bottom: 20px;
+    }
+    .create-order-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      width: 160px;
+      height: 40px;
+      font-size: 16px;
+      .create-order-btn-icon {
+        margin-left: 5px;
+      }
+    }
+  }
+}

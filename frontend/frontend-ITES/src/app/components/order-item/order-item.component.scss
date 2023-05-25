@@ -1,0 +1,41 @@
+.order-item {
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  .details-btn {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    cursor: pointer;
+    &.opened {
+      transform: rotate(180deg);
+      top: 6px;
+    }
+  }
+  .item-info {
+    .item-description, .item-document, .item-status {
+      margin-top: 10px;
+    }
+    .description-title, .document-title, .status-title {
+      font-weight: bold;
+    }
+    .item-description {
+      .description-title {
+        margin-bottom: 5px;
+      }
+    }
+    .item-document, .item-status {
+      display: flex;
+    }
+    .document-file-link, .status-name {
+      margin-left: 5px;
+    }
+    .document-file-link a {
+      text-decoration: none;
+      color: #2E9CCA;
+    }
+  }
+}

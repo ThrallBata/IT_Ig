@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {CreateOrderFormComponent} from "../../components/create-order-form/create-order-form.component";
 
 @Component({
   selector: 'app-profile-page',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent {
-
+  isCreateOrderFormOpened = false;
 }

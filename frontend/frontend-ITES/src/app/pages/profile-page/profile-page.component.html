@@ -1,11 +1,24 @@
 <div class="profile-page-container">
   <div class="profile-title">Личный кабинет</div>
   <div class="user-info">
-    <div class="user-name">Иванов Иван Иванович</div>
-    <div class="user-email">Ivanov@mail.ru</div>
-    <div class="user-phone">+79008001070</div>
+    <div class="user-name">ФИО: Иванов Иван Иванович</div>
+    <div class="user-email">E-mail: Ivanov@mail.ru</div>
+    <div class="user-phone">Телефон: +79008001070</div>
   </div>
-  <div class="user-orders">
-    <div class="order-item"></div>
+  <div class="user-orders-container">
+    <div class="orders-title">Мои заказы</div>
+    <div class="user-orders">
+      <app-order-item></app-order-item>
+      <app-order-item></app-order-item>
+    </div>
+    <button class="btn create-order-btn" (click)="isCreateOrderFormOpened = true">
+      <span>Создать заказ</span>
+      <svg class="create-order-btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.75004 5.33331C8.75004 4.9191 8.41425 4.58331 8.00004 4.58331C7.58583 4.58331 7.25004 4.9191 7.25004 5.33331V7.24998H5.33337C4.91916 7.24998 4.58337 7.58577 4.58337 7.99998C4.58337 8.41419 4.91916 8.74998 5.33337 8.74998H7.25004V10.6666C7.25004 11.0809 7.58583 11.4166 8.00004 11.4166C8.41425 11.4166 8.75004 11.0809 8.75004 10.6666V8.74998H10.6667C11.0809 8.74998 11.4167 8.41419 11.4167 7.99998C11.4167 7.58577 11.0809 7.24998 10.6667 7.24998H8.75004V5.33331Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.25C4.27208 1.25 1.25 4.27208 1.25 8C1.25 11.7279 4.27208 14.75 8 14.75C11.7279 14.75 14.75 11.7279 14.75 8C14.75 4.27208 11.7279 1.25 8 1.25ZM2.75 8C2.75 5.10051 5.10051 2.75 8 2.75C10.8995 2.75 13.25 5.10051 13.25 8C13.25 10.8995 10.8995 13.25 8 13.25C5.10051 13.25 2.75 10.8995 2.75 8Z" fill="white"/>
+      </svg>
+    </button>
   </div>
 </div>
+
+<app-create-order-form *ngIf="isCreateOrderFormOpened"></app-create-order-form>

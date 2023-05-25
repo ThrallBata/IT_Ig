@@ -2,8 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8149eaeb-1872-456f-baf4-9e2c71f081e7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/models/token.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/navigation/navigation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/navigation/navigation.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/navigation/navigation.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/order-item/order-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/order-item/order-item.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/order-item/order-item.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/order-item/order-item.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/order-item/order-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/order-item/order-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/project-item/project-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/project-item/project-item.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/project-item/project-item.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/project-item/project-item.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/project-item/project-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/project-item/project-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/chat-page/chat-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/chat-page/chat-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/chat-page/chat-page.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/chat-page/chat-page.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/login-page/login-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/login-page/login-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/login-page/login-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/login-page/login-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/main-page/main-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/main-page/main-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/main-page/main-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/main-page/main-page.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/profile-page/profile-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/profile-page/profile-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/profile-page/profile-page.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/profile-page/profile-page.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/profile-page/profile-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/profile-page/profile-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/projects-page/projects-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/projects-page/projects-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/projects-page/projects-page.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/projects-page/projects-page.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/projects-page/projects-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/pages/projects-page/projects-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/services/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/services/login.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +67,10 @@
       <option name="presentableId" value="Default" />
       <updated>1683460278660</updated>
       <workItem from="1683460280121" duration="964000" />
-      <workItem from="1683463074560" duration="623000" />
+      <workItem from="1683463074560" duration="2658000" />
+      <workItem from="1683741901361" duration="420000" />
+      <workItem from="1683781244769" duration="41000" />
+      <workItem from="1685007619747" duration="615000" />
     </task>
     <servers />
   </component>

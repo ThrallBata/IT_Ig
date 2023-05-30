@@ -20,6 +20,14 @@ export class NavigationComponent {
 
   profileBtn() {
     this.router.navigate(['profile']);
+    // при вызове функции getUserId в ответ приходит ошибка 404 not found
+    this.loginService.getUserId()
+      .subscribe(res => {
+        alert("Id пользователя получен");
+        console.log(localStorage.getItem('userId'));
+      }, error => {
+        alert("Ошибка");
+      });
   }
 
   registerBtn() {

@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {Token} from "../models/token";
 import {Observable, tap} from "rxjs";
+import {UserId} from "../models/userId";
 
 @Injectable({
   providedIn: 'root'
@@ -44,12 +45,16 @@ export class LoginService {
   }
 
   //это нам надо
-  getUserId() {
-    return this.http.get('http://127.0.0.1:8000/api/userid', {
+  getUserId(): Observable<UserId> {
+    return this.http.get<UserId>('http://127.0.0.1:8000/api/userid', {
       headers: {
         Authorization: 'Token ' + localStorage.getItem('token')
       }
-    })
+    }).pipe(
+      tap(userId => {
+        localStorage.setItem('userId', userId.user_id);
+      })
+    )
   }
 
   //это чисто фронтовая тема

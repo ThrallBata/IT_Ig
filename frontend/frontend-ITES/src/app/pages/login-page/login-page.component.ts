@@ -26,13 +26,14 @@ export class LoginPageComponent {
       });
   }
 
-  getUserId() {
+  /*getUserId() {
     this.loginService.getUserId()
       .subscribe(res => {
         alert("Id пользователя получен");
+        console.log(localStorage.getItem('userId'));
       }, error => {
         alert("Ошибка");
       });
-  }
+  }*/
 
 }

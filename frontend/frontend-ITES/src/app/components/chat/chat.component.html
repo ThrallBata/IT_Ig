@@ -11,11 +11,15 @@
       <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="white"/>
     </svg>
   </button>-->
-  <div class="messages-container">
-    <app-message style="margin-top: 20px;" class="message-in-container"></app-message>
+  <div class="messages-container" id="chat-log">
+    <app-message style="margin-top: 20px;" [ngClass]="{
+    'message-in-container': message.user === 1,
+    'message-out-container': message.user !== 1
+    }" *ngFor="let message of messages"
+    [message]="message"></app-message>
   </div>
   <div class="chat-input-container">
-    <input type="text" class="input chat-input" placeholder="Введите сообщение...">
+    <input type="text" class="input chat-input" placeholder="Введите сообщение..." id="chat-message-input">
     <div class="chat-actions">
       <button class="round-btn add-btn">
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +33,7 @@
           </defs>
         </svg>
       </button>
-      <button class="round-btn send-btn">
+      <button class="round-btn send-btn" id="chat-message-submit">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 5.29289C12.6834 4.90237 13.3166 4.90237 13.7071 5.29289L19.7071 11.2929C20.0976 11.6834 20.0976 12.3166 19.7071 12.7071L13.7071 18.7071C13.3166 19.0976 12.6834 19.0976 12.2929 18.7071C11.9024 18.3166 11.9024 17.6834 12.2929 17.2929L16.5858 13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H16.5858L12.2929 6.70711C11.9024 6.31658 11.9024 5.68342 12.2929 5.29289Z" fill="white"/>
         </svg>

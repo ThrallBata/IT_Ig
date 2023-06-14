@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
+import {ChatService} from "../../services/chat.service";
 
 @Component({
   selector: 'app-navigation',

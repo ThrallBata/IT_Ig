@@ -7,6 +7,7 @@ import {ProfilePageComponent} from "./pages/profile-page/profile-page.component"
 import {ProjectsPageComponent} from "./pages/projects-page/projects-page.component";
 import {RegisterPageComponent} from "./pages/register-page/register-page.component";
 import {ChatPageComponent} from "./pages/chat-page/chat-page.component";
+import {TestWebsocketComponent} from "./components/test-websocket/test-websocket.component";
 
 export const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -14,7 +15,8 @@ export const routes: Routes = [
   {path: 'profile', component: ProfilePageComponent},
   {path: 'projects', component: ProjectsPageComponent},
   {path: 'register', component: RegisterPageComponent},
-  {path: 'chat', component: ChatPageComponent}
+  {path: 'chat', component: ChatPageComponent},
+  {path: 'test', component: TestWebsocketComponent}
 ]
 
 @NgModule({

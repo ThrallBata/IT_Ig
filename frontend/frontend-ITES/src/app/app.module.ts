@@ -17,6 +17,7 @@ import { ChatPageComponent } from './pages/chat-page/chat-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import { MessageComponent } from './components/message/message.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
+import { TestWebsocketComponent } from './components/test-websocket/test-websocket.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CreateOrderFormComponent } from './components/create-order-form/create-
     RegisterPageComponent,
     ChatPageComponent,
     MessageComponent,
-    CreateOrderFormComponent
+    CreateOrderFormComponent,
+    TestWebsocketComponent
   ],
   imports: [
     BrowserModule,

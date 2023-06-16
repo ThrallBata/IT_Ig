@@ -8,7 +8,7 @@ from appsite.models import Message, Chat
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.user = self.scope["user"]
+        # self.user = self.scope["user"]
         self.room_group_name = 'chat'
         await self.channel_layer.group_add(
             self.room_group_name,
@@ -23,10 +23,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
     @database_sync_to_async
-    def create_message(self, message, chat):
+    def create_message(self, message, chat, user):
         message_obj = Message.objects.create(
             content=message,
-            user_id=int(self.user.id),
+            user_id=int(user),
             chat_id=int(chat)
         )
         Chat.objects.filter(pk=int(chat)).update(status_view=True)
@@ -37,14 +37,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         print(data)
         message = data['message']
         chat = data['chat']
-
+        user = data['user']
         # Create a new message object and save it to the database
-        message_obj = await self.create_message(message, chat)# message_obj = await self.create_message(message, user_id)
+        message_obj = await self.create_message(message, chat, user)# message_obj = await self.create_message(message, user_id)
 
         print({
                 'type': 'chat_message',
                 'message': message_obj.content,
-                'user': self.user.id
+                # 'user': self.user.id
             })
                 # 'user': message_obj.user_id,
         # Send the message to the group
@@ -63,5 +63,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Send the message to the websocket
         await self.send(text_data=json.dumps({
             'message': message,
-            'user': self.user.id,
+            # 'user': user,
         }))

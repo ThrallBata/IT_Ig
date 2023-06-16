@@ -19,10 +19,9 @@ export class ChatService {
   // web: any;
 
   constructor(
-    private wsService: WebsocketService,
     private http: HttpClient
   ) {
-    /*this.web = wsService.connect("ws://localhost:8000/ws/chat/1");
+    /*this.web = wsService.connect("ws://localhost:8000/ws/chat/1/");
     this.web.send(JSON.stringify("data"));*/
     /*.map(
       (response: MessageEvent): MessageI => {

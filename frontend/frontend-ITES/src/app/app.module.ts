@@ -18,6 +18,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { MessageComponent } from './components/message/message.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
 import { TestWebsocketComponent } from './components/test-websocket/test-websocket.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TestWebsocketComponent } from './components/test-websocket/test-websock
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

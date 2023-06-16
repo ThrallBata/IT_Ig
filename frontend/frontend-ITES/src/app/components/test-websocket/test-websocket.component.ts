@@ -1,29 +1,26 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { map, tap, catchError, retry } from 'rxjs/operators';
+import { Component, OnDestroy } from '@angular/core';
 import {WebsocketService} from "../../services/websocket.service";
+
 
 @Component({
   selector: 'app-test-websocket',
   templateUrl: './test-websocket.component.html',
-  styleUrls: ['./test-websocket.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./test-websocket.component.scss']
 })
-export class TestWebsocketComponent implements AfterViewInit {
+export class TestWebsocketComponent {
+  message = '';
+  room = '1';
+  chat = '1';
 
-  transactions$ = this.service.messages$.pipe(
-    map(rows => rows['data']),
-    catchError(error => { throw error }),
-    tap({
-      error: error => console.log('[Live Table component] Error:', error),
-      complete: () => console.log('[Live Table component] Connection Closed')
-    })
-  );
-
-  constructor(private service: WebsocketService) {
+  constructor(public webSocketService: WebsocketService) {
+    this.webSocketService.connect();
   }
 
-  ngAfterViewInit() {
-    this.service.connect();
+  sendMessage(message: string, room: string, chat: string) {
+    this.webSocketService.sendMessage(message, room, chat);
+  }
+
+  ngOnDestroy() {
+    this.webSocketService.close();
   }
 }

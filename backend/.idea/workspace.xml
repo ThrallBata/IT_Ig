@@ -3,9 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8149eaeb-1872-456f-baf4-9e2c71f081e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/consumers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/test-websocket/test-websocket.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/test-websocket/test-websocket.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/test-websocket/test-websocket.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/test-websocket/test-websocket.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/chat/chat.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/test-websocket/test-websocket.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/test-websocket/test-websocket.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/components/test-websocket/test-websocket.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/models/message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/models/message.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/services/chat.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/services/chat.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/services/websocket.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend-ITES/src/app/services/websocket.service.ts" afterDir="false" />
     </list>
@@ -53,7 +60,7 @@
       <workItem from="1685531564537" duration="523000" />
       <workItem from="1686639327237" duration="4810000" />
       <workItem from="1686736101647" duration="1219000" />
-      <workItem from="1686908679267" duration="2206000" />
+      <workItem from="1686908679267" duration="8290000" />
     </task>
     <servers />
   </component>

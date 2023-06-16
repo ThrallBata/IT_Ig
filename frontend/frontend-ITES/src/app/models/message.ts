@@ -2,6 +2,6 @@ export class Message {
   id: number
   user: number
   content: string
-  chat: number
+  chat: string
   file: string
 }

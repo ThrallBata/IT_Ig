@@ -2,8 +2,6 @@ import {Component, Injectable} from '@angular/core';
 import {ChatService} from "../../services/chat.service";
 import {Message} from "../../models/message";
 import {WebsocketService} from "../../services/websocket.service";
-import {HttpClient} from "@angular/common/http";
-import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-chat',
@@ -15,15 +13,18 @@ import {Subject} from "rxjs";
 export class ChatComponent {
   isOpened = false;
   messages: Message[];
-  userId: number;
-  chatId: number;
+  message = '';
 
   constructor(
-    private chatService: ChatService
+    public chatService: ChatService,
+    public webSocketService: WebsocketService
   ) {}
 
   ngOnInit(): void {
     this.getUserMessageStory();
+    this.chatService.getChatId();
+    this.chatService.getUserId();
+    this.webSocketService.connect(this.chatService.chatId);
   }
 
   //это нам надо
@@ -31,18 +32,16 @@ export class ChatComponent {
     this.chatService.getUserMessageStory()
       .subscribe((messages: Message[]) => {
         this.messages = messages;
-        this.chatId = messages[0].chat;
-        for (let i = 0; i < messages.length; i++) {
-          if (messages[i].user !== 1) {
-            this.userId = messages[i].user;
-            break;
-          }
-        }
-        console.log(this.userId);
       }, error => {
         alert("Ошибка");
       });
   }
 
+  sendMessage(message: string, chat: string, userId: string) {
+    this.webSocketService.sendMessage(message, chat, userId);
+  }
 
+  ngOnDestroy() {
+    this.webSocketService.close();
+  }
 }

@@ -11,33 +11,44 @@
       <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="white"/>
     </svg>
   </button>-->
-  <div class="messages-container" id="chat-log">
-    <app-message style="margin-top: 20px;" [ngClass]="{
+  <div class="wrapper">
+    <div class="messages-container" id="chat-log">
+      <app-message style="margin-top: 20px;" [ngClass]="{
     'message-in-container': message.user === 1,
     'message-out-container': message.user !== 1
     }" *ngFor="let message of messages"
-    [message]="message"></app-message>
+                   [message]="message"></app-message>
+      <ul>
+        <li *ngFor="let data of webSocketService.receivedData">
+          {{ data.message }}
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="chat-input-container">
-    <input type="text" class="input chat-input" placeholder="Введите сообщение..." id="chat-message-input">
-    <div class="chat-actions">
-      <button class="round-btn add-btn">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_34_240)">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.51468 17C7.51468 16.4477 7.96239 16 8.51468 16L16 16L16 8.51472C16 7.96243 16.4477 7.51472 17 7.51472C17.5522 7.51472 18 7.96243 18 8.51472L18 16H25.4852C26.0375 16 26.4852 16.4477 26.4852 17C26.4852 17.5523 26.0375 18 25.4852 18H18L18 25.4853C18 26.0376 17.5522 26.4853 17 26.4853C16.4477 26.4853 16 26.0376 16 25.4853L16 18L8.51468 18C7.96239 18 7.51468 17.5523 7.51468 17Z" fill="white"/>
-          </g>
-          <defs>
-            <clipPath id="clip0_34_240">
-              <rect width="24" height="24" fill="white" transform="translate(0.0294189 17) rotate(-45)"/>
-            </clipPath>
-          </defs>
-        </svg>
-      </button>
-      <button class="round-btn send-btn" id="chat-message-submit">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 5.29289C12.6834 4.90237 13.3166 4.90237 13.7071 5.29289L19.7071 11.2929C20.0976 11.6834 20.0976 12.3166 19.7071 12.7071L13.7071 18.7071C13.3166 19.0976 12.6834 19.0976 12.2929 18.7071C11.9024 18.3166 11.9024 17.6834 12.2929 17.2929L16.5858 13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H16.5858L12.2929 6.70711C11.9024 6.31658 11.9024 5.68342 12.2929 5.29289Z" fill="white"/>
-        </svg>
-      </button>
-    </div>
+    <!-- Это стояло в теге from ниже
+    (ngSubmit)="sendMessage(message); message = ''"-->
+    <form>
+      <input [(ngModel)]="message" name="message" type="text" class="input chat-input" placeholder="Введите сообщение..." id="chat-message-input">
+      <div class="chat-actions">
+        <button class="round-btn add-btn">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_34_240)">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.51468 17C7.51468 16.4477 7.96239 16 8.51468 16L16 16L16 8.51472C16 7.96243 16.4477 7.51472 17 7.51472C17.5522 7.51472 18 7.96243 18 8.51472L18 16H25.4852C26.0375 16 26.4852 16.4477 26.4852 17C26.4852 17.5523 26.0375 18 25.4852 18H18L18 25.4853C18 26.0376 17.5522 26.4853 17 26.4853C16.4477 26.4853 16 26.0376 16 25.4853L16 18L8.51468 18C7.96239 18 7.51468 17.5523 7.51468 17Z" fill="white"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_34_240">
+                <rect width="24" height="24" fill="white" transform="translate(0.0294189 17) rotate(-45)"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+        <button (click)="sendMessage(message, chatService.chatId, chatService.userId); message = ''; chatService.chatId = ''" class="round-btn send-btn" id="chat-message-submit">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 5.29289C12.6834 4.90237 13.3166 4.90237 13.7071 5.29289L19.7071 11.2929C20.0976 11.6834 20.0976 12.3166 19.7071 12.7071L13.7071 18.7071C13.3166 19.0976 12.6834 19.0976 12.2929 18.7071C11.9024 18.3166 11.9024 17.6834 12.2929 17.2929L16.5858 13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H16.5858L12.2929 6.70711C11.9024 6.31658 11.9024 5.68342 12.2929 5.29289Z" fill="white"/>
+          </svg>
+        </button>
+      </div>
+    </form>
   </div>
 </div>

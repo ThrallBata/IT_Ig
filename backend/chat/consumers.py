@@ -1,4 +1,5 @@
 import json
+from channels.exceptions import DenyConnection
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.layers import get_channel_layer
 from channels.db import database_sync_to_async
@@ -7,7 +8,7 @@ from appsite.models import Message, Chat
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        #self.user = self.scope["user"]
+        # self.user = self.scope["user"]
         self.room_group_name = 'chat'
         await self.channel_layer.group_add(
             self.room_group_name,
@@ -22,7 +23,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
     @database_sync_to_async
-    def create_message(self, message, user, chat):
+    def create_message(self, message, chat, user):
         message_obj = Message.objects.create(
             content=message,
             user_id=int(user),
@@ -35,28 +36,32 @@ class ChatConsumer(AsyncWebsocketConsumer):
         data = json.loads(text_data)
         print(data)
         message = data['message']
-        user = data['room']
         chat = data['chat']
-
+        user = data['userId']
         # Create a new message object and save it to the database
-        message_obj = await self.create_message(message, user, chat)# message_obj = await self.create_message(message, user_id)
+        message_obj = await self.create_message(message, chat, user)# message_obj = await self.create_message(message, user_id)
 
+        print({
+                'type': 'chat_message',
+                'message': message_obj.content,
+                # 'user': self.user.id
+            })
+                # 'user': message_obj.user_id,
         # Send the message to the group
         await self.channel_layer.group_send(
             self.room_group_name,
             {
                 'type': 'chat_message',
                 'message': message_obj.content,
-                'user': message_obj.user_id,
             }
         )
 
     async def chat_message(self, event):
         message = event['message']
-        user = event['user']
+        # user = event['user']
 
         # Send the message to the websocket
         await self.send(text_data=json.dumps({
             'message': message,
-            'user': user,
+            # 'user': user,
         }))

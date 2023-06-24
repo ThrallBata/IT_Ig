@@ -18,11 +18,11 @@
     'message-out-container': message.user !== 1
     }" *ngFor="let message of messages"
                    [message]="message"></app-message>
-      <ul>
-        <li *ngFor="let data of webSocketService.receivedData">
-          {{ data.message }}
-        </li>
-      </ul>
+    </div>
+    <div class="messages-container">
+      <div class="message-out-container message" *ngFor="let data of webSocketService.receivedData">
+        {{ data.message }}
+      </div>
     </div>
   </div>
   <div class="chat-input-container">

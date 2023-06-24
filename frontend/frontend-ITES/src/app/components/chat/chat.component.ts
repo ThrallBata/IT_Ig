@@ -32,8 +32,6 @@ export class ChatComponent {
     this.chatService.getUserMessageStory()
       .subscribe((messages: Message[]) => {
         this.messages = messages;
-      }, error => {
-        alert("Ошибка");
       });
   }
 

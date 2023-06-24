@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Message} from "../models/message";
+import {Chat} from "../models/chat";
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,24 @@ export class ChatService {
     private http: HttpClient
   ) {}
 
-  getUserMessageStory(): Observable<Message[]> {
-    return this.http.get<Message[]>('http://127.0.0.1:8000/api/chat/', {
-      headers: {
-        Authorization: 'Token ' + localStorage.getItem('token')
+  getUserMessageStory(): Observable<Message[]> | Observable<Chat[]> | any {
+    try {
+      return this.http.get<Message[]>('http://127.0.0.1:8000/api/chat/', {
+        headers: {
+          Authorization: 'Token ' + localStorage.getItem('token')
+        }
+      });
+    } catch (error) {
+      if (error instanceof TypeError) {
+        return this.http.get<Chat[]>('http://127.0.0.1:8000/api/chat/', {
+          headers: {
+            Authorization: 'Token ' + localStorage.getItem('token')
+          }
+        });
+      } else {
+        alert("Ошибка");
       }
-    });
+    }
   }
 
   getChatId(): string {
@@ -28,8 +41,6 @@ export class ChatService {
       .subscribe((messages: Message[]) => {
         this.messages = messages;
         this.chatId = messages[0].chat;
-      }, error => {
-        alert("Ошибка");
       });
     return this.chatId;
   }
@@ -42,10 +53,11 @@ export class ChatService {
           if (messages[i].user !== 1) {
             this.userId = messages[i].user.toString();
             break;
+          } else {
+            this.userId = messages[i].user.toString();
+            console.log(this.userId);
           }
         }
-      }, error => {
-        alert("Ошибка");
       });
     return this.userId;
   }

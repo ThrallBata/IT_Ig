@@ -76,19 +76,19 @@ class OrderChangeAPIUpdate(generics.UpdateAPIView):
         return Order.objects.filter(client_id=user)
 
 
-# # class UserByTokenAPIView(APIView):
-# #     permission_classes = (IsAuthenticated,)
-# #     authentication_classes = (TokenAuthentication,)#token-only access
-#
-#     def get(self, request):
-#         user_id = Token.objects.get(key=request.auth.key).user_id
-#         return Response({'user_id': user_id})
-#
-#
-#
-#
-#
-#
+class UserByTokenAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)#token-only access
+
+    def get(self, request):
+        user_id = Token.objects.get(key=request.auth.key).user_id
+        return Response({'user_id': user_id})
+
+
+
+
+
+
 
 
 def index(request):

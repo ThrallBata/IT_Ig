@@ -12,6 +12,8 @@ urlpatterns = [
     path('api/order/<int:pk>/confim/', OrderConfimAPIUpdate.as_view(), name='update-status'),
     path('api/order/all/', OrderListAPIView.as_view(), name='order-list'),
 
+
+    path('api/userid/', UserByTokenAPIView.as_view()),
     path('api/auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
 ]

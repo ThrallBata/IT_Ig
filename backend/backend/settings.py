@@ -183,3 +183,8 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+ADMINS = (
+
+    ('admin', 'admin@mysite.com'),
+)

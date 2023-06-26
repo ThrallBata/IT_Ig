@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Message} from "../models/message";
@@ -14,7 +14,8 @@ export class ChatService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+  }
 
   getUserMessageStory(): Observable<Message[]> | Observable<Chat[]> | any {
     try {
@@ -36,6 +37,14 @@ export class ChatService {
     }
   }
 
+  connectToChatByEmployee(chatId: string): Observable<Message[]> {
+    return this.http.get<Message[]>('http://127.0.0.1:8000/api/chat/' + chatId, {
+      headers: {
+        Authorization: 'Token ' + localStorage.getItem('token')
+      }
+    });
+  }
+
   getChatId(): string {
     this.getUserMessageStory()
       .subscribe((messages: Message[]) => {
@@ -46,19 +55,19 @@ export class ChatService {
   }
 
   getUserId(): string {
-    this.getUserMessageStory()
-      .subscribe((messages: Message[]) => {
-        this.messages = messages;
-        for (let i = 0; i < messages.length; i++) {
-          if (messages[i].user !== 1) {
-            this.userId = messages[i].user.toString();
-            break;
-          } else {
-            this.userId = messages[i].user.toString();
-            console.log(this.userId);
+      this.getUserMessageStory()
+        .subscribe((messages: Message[]) => {
+          this.messages = messages;
+          for (let i = 0; i < messages.length; i++) {
+            if (messages[i].user !== 1) {
+              this.userId = messages[i].user.toString();
+              break;
+            } else {
+              this.userId = messages[i].user.toString();
+              console.log(this.userId);
+            }
           }
-        }
-      });
-    return this.userId;
+        });
+      return this.userId;
   }
 }

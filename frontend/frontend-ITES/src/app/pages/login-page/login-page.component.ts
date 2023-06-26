@@ -2,8 +2,9 @@ import {Component} from '@angular/core';
 import {NavigationComponent} from "../../components/navigation/navigation.component";
 import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
-import {Observable} from "rxjs";
+import {Observable, timeout} from "rxjs";
 import {Token} from "../../models/token";
+import {AppComponent} from "../../app.component";
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,7 @@ import {Token} from "../../models/token";
 })
 export class LoginPageComponent {
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private appComponent: AppComponent) {
   }
 
   testLogin(login: string, password: string) {
@@ -20,7 +21,8 @@ export class LoginPageComponent {
       .subscribe(res => {
         alert('Вход');
         console.log(localStorage.getItem('token'));
-        this.router.navigate(['/'])
+        this.appComponent.getUserId();
+        this.router.navigate(['/']);
       }, error => {
         alert('Ошибка');
       });

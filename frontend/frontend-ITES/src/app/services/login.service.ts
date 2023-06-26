@@ -40,21 +40,22 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     this.router.navigate(['/'])
     return this.http.get('http://127.0.0.1:8000/auth/token/logout/');
   }
 
   //это нам надо
   getUserId(): Observable<UserId> {
-    return this.http.get<UserId>('http://127.0.0.1:8000/api/userid', {
+    return this.http.get<UserId>('http://127.0.0.1:8000/api/userid/', {
       headers: {
         Authorization: 'Token ' + localStorage.getItem('token')
       }
-    }).pipe(
+    })/*.pipe(
       tap(userId => {
         localStorage.setItem('userId', userId.user_id);
       })
-    )
+    )*/
   }
 
   //это чисто фронтовая тема

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
-import {ChatService} from "../../services/chat.service";
+import {AppComponent} from "../../app.component";
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +10,7 @@ import {ChatService} from "../../services/chat.service";
 })
 export class NavigationComponent {
 
-  constructor(private router: Router, public loginService: LoginService) {
+  constructor(private router: Router, public loginService: LoginService, public appComponent: AppComponent) {
   }
 
   isMenuOpened = false;
@@ -21,14 +21,6 @@ export class NavigationComponent {
 
   profileBtn() {
     this.router.navigate(['profile']);
-    // при вызове функции getUserId в ответ приходит ошибка 404 not found
-    this.loginService.getUserId()
-      .subscribe(res => {
-        alert("Id пользователя получен");
-        console.log(localStorage.getItem('userId'));
-      }, error => {
-        alert("Ошибка");
-      });
   }
 
   registerBtn() {

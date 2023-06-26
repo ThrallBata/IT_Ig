@@ -16,7 +16,7 @@
       <app-message style="margin-top: 20px;" [ngClass]="{
     'message-in-container': message.user === 1,
     'message-out-container': message.user !== 1
-    }" *ngFor="let message of messages"
+    }" *ngFor="let message of chatService.messages"
                    [message]="message"></app-message>
     </div>
     <div class="messages-container">

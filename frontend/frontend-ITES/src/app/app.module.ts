@@ -18,6 +18,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { MessageComponent } from './components/message/message.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
 import {FormsModule} from "@angular/forms";
+import { AllChatPageComponent } from './pages/all-chat-page/all-chat-page.component';
+import { ChatItemComponent } from './components/chat-item/chat-item.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {FormsModule} from "@angular/forms";
     RegisterPageComponent,
     ChatPageComponent,
     MessageComponent,
-    CreateOrderFormComponent
+    CreateOrderFormComponent,
+    AllChatPageComponent,
+    ChatItemComponent
   ],
   imports: [
     BrowserModule,

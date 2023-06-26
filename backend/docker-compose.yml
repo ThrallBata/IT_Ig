@@ -1,0 +1,30 @@
+version: "3.11"
+services:
+  db:
+    image: postgres:14
+    container_name: db_app
+    command: -p 5438
+    expose:
+      - 5438
+    env_file:
+      - .env_docker
+
+  redis:
+    image: redis:7
+    container_name: redis_app
+    command: --port 6371
+    expose:
+      - 6371
+
+  app:
+    build:
+      context: .
+    env_file:
+      - .env_docker
+    container_name: ites_app
+    command: ["/ites_app/docker/app.sh"]
+    ports:
+      - 8001:8000
+    depends_on:
+      - db
+      - redis

@@ -6,6 +6,7 @@ WORKDIR /app
 COPY . .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
+RUN python3 manage.py makemigrations
 RUN python3 manage.py migrate
 
 CMD python3 manage.py createsuperuser createsuperuser --username=admin --email=admin@example.com

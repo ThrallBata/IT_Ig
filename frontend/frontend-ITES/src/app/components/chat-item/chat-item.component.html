@@ -1,0 +1,5 @@
+<div class="chat-item" (click)="connectToChat(chatId.value); chatService.chatId = chatId.value">
+  <input type="hidden" value="{{chat.id}}" #chatId>
+  <div class="item-client">{{chat.client}}</div>
+  <div class="item-status-view">{{chat.statusView}}</div>
+</div>

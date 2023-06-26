@@ -1,11 +1,8 @@
 FROM python:3.11
 
-RUN mkdir /ites_app
-
-WORKDIR /ites_app
-
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /app
+WORKDIR /app
 COPY . .
-
-RUN pip install -r requirements.txt
-
+RUN pip install --upgrade pip && pip install -r requirements.txt
 RUN chmod a+x docker/*.sh

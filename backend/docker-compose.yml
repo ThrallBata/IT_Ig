@@ -2,10 +2,11 @@ version: "3.11"
 services:
   db:
     image: postgres:14
-    container_name: db_app
-    command: -p 5438
+    container_name: db
+    restart: always
+    command: -p 5430
     expose:
-      - 5438
+      - 5430
     env_file:
       - .env_docker
 
@@ -21,10 +22,10 @@ services:
       context: .
     env_file:
       - .env_docker
-    container_name: ites_app
-    command: ["/ites_app/docker/app.sh"]
+    container_name: django_app
+    command: ["/app/docker/app.sh"]
     ports:
-      - 8001:8000
+      - 8007:8000
     depends_on:
       - db
       - redis

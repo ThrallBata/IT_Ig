@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_AUTH")
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ["https://ites.onrender.com/"]
+CSRF_TRUSTED_ORIGINS = ["https://ites.onrender.com"]
 
 # Application definition
 

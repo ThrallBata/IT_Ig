@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.isAdmin = localStorage.getItem("userId") === "1";
+    console.log(localStorage.getItem("userId"));
   }
 }

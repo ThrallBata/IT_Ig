@@ -24,8 +24,8 @@ export class WebsocketService {
     }
   }
 
-  sendMessage(message: string, chat: string, userId: string) {
-    this.socket$.next({ message, chat, userId });
+  sendMessage(message: string, chat: string, user: string) {
+    this.socket$.next({ message, chat, user });
   }
 
   close() {

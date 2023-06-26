@@ -40,8 +40,8 @@ export class ChatComponent {
       });
   }
 
-  sendMessage(message: string, chat: string, userId: string) {
-    this.webSocketService.sendMessage(message, chat, userId);
+  sendMessage(message: string, chat: string, user: string) {
+    this.webSocketService.sendMessage(message, chat, user);
   }
 
   ngOnDestroy() {

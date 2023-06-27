@@ -8,8 +8,7 @@
   <div class="user-orders-container">
     <div class="orders-title">Мои заказы</div>
     <div class="user-orders">
-      <app-order-item></app-order-item>
-      <app-order-item></app-order-item>
+      <app-order-item *ngFor="let order of orders" [order]="order"></app-order-item>
     </div>
     <button class="btn create-order-btn" (click)="isCreateOrderFormOpened = true">
       <span>Создать заказ</span>

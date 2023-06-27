@@ -8,6 +8,10 @@
     height: 200px;
     background-color: #AAABB8;
     border-radius: 10px;
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
   }
   .item-info {
     display: flex;

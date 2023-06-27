@@ -14,13 +14,16 @@
   <div class="wrapper">
     <div class="messages-container" id="chat-log">
       <app-message style="margin-top: 20px;" [ngClass]="{
-    'message-in-container': message.user === 1,
-    'message-out-container': message.user !== 1
+    'message-in-container': message.user.toString() !== appComponent.userId,
+    'message-out-container': message.user.toString() === appComponent.userId
     }" *ngFor="let message of chatService.messages"
                    [message]="message"></app-message>
     </div>
-    <div class="messages-container">
-      <div class="message-out-container message" *ngFor="let data of webSocketService.receivedData">
+    <div class="messages-container" style="margin-top: 20px;">
+      <div class="message-out-container message" style="margin-top: 20px;" [ngClass]="{
+    'message-in-container': data.user !== appComponent.userId,
+    'message-out-container': data.user === appComponent.userId
+    }" *ngFor="let data of webSocketService.receivedData">
         {{ data.message }}
       </div>
     </div>
@@ -43,7 +46,7 @@
             </defs>
           </svg>
         </button>
-        <button (click)="sendMessage(message, chatService.chatId, chatService.userId); message = ''; chatService.chatId = ''" class="round-btn send-btn" id="chat-message-submit">
+        <button (click)="sendMessage(message, chatService.chatId, chatService.userId); message = '';" class="round-btn send-btn" id="chat-message-submit">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 5.29289C12.6834 4.90237 13.3166 4.90237 13.7071 5.29289L19.7071 11.2929C20.0976 11.6834 20.0976 12.3166 19.7071 12.7071L13.7071 18.7071C13.3166 19.0976 12.6834 19.0976 12.2929 18.7071C11.9024 18.3166 11.9024 17.6834 12.2929 17.2929L16.5858 13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H16.5858L12.2929 6.70711C11.9024 6.31658 11.9024 5.68342 12.2929 5.29289Z" fill="white"/>
           </svg>

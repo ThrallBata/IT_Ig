@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
       .subscribe((userId: UserId) => {
         this.userId = userId.user_id.toString();
         localStorage.setItem("userId", this.userId);
-        console.log(localStorage.getItem("userId"));
         this.isAdmin = localStorage.getItem("userId") === "1";
       });
   }
@@ -37,5 +36,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = localStorage.getItem("userId") === "1";
     console.log(localStorage.getItem("userId"));
+    this.loginService.getUserId()
+      .subscribe((userId: UserId) => {
+        this.userId = userId.user_id.toString();
+    });
+    console.log(this.userId);
   }
 }

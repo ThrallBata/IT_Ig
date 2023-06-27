@@ -3,6 +3,7 @@ import {ChatService} from "../../services/chat.service";
 import {Message} from "../../models/message";
 import {WebsocketService} from "../../services/websocket.service";
 import {LoginService} from "../../services/login.service";
+import {AppComponent} from "../../app.component";
 
 @Component({
   selector: 'app-chat',
@@ -18,7 +19,8 @@ export class ChatComponent {
   constructor(
     public chatService: ChatService,
     public webSocketService: WebsocketService,
-    public loginService: LoginService
+    public loginService: LoginService,
+    public appComponent: AppComponent
   ) {}
 
   ngOnInit(): void {

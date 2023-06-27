@@ -44,7 +44,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         print({
                 'type': 'chat_message',
                 'message': message_obj.content,
-                # 'user': self.user.id
+                'user': user,
+                'chat': chat,
             })
                 # 'user': message_obj.user_id,
         # Send the message to the group
@@ -53,15 +54,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
             {
                 'type': 'chat_message',
                 'message': message_obj.content,
+                'user': user,
+                'chat': chat,
             }
         )
 
     async def chat_message(self, event):
         message = event['message']
-        # user = event['user']
+        user = event['user']
+        chat = event['chat']
 
         # Send the message to the websocket
         await self.send(text_data=json.dumps({
             'message': message,
-            # 'user': user,
+            'user': user,
+            'chat': chat
+
         }))

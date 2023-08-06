@@ -16,3 +16,8 @@ class ChatSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 
+class ChatPerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chat
+        fields = ('id', 'client', 'staff', 'username')
+        read_only_fields = ('id',)

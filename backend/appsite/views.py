@@ -84,15 +84,3 @@ class UserByTokenAPIView(APIView):
         user_id = Token.objects.get(key=request.auth.key).user_id
         return Response({'user_id': user_id})
 
-
-
-
-
-
-
-
-def index(request):
-
-    return render(request, 'appsite/index.html')
-
-

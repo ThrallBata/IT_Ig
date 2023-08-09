@@ -36,27 +36,9 @@ def ChatAPIView(request, chat_id=None):
             Message.objects.create(user_id=1, content="Здравствуйте, можете задать свои вопросы. Работник свяжется с вами в ближайшее время.", chat_id=chatRecord.id)
         return Response(MessageSerializer(Message.objects.filter(chat=int(chatRecord.pk)), many=True).data)
 
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-
-def index(request):
-    user = request.user.id
-    return render(request, "chat/index.html", {'user': user})
 
 
-def room(request, room_name):
-    return render(request, "chat/room.html", {"room_name": room_name})
-    # if str(request.user.id) == str(room_name):
-    #     return render(request, "chat/room.html", {"room_name": room_name})
-    # else:
-    #     return redirect('start-chat')
+
+
 
 

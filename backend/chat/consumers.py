@@ -34,18 +34,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     async def receive(self, text_data):
         data = json.loads(text_data)
-        print(data)
+
         message = data['message']
         chat = data['chat']
         user = data['user']
         # Create a new message object and save it to the database
         message_obj = await self.create_message(message, chat, user)# message_obj = await self.create_message(message, user_id)
 
-        print({
-                'type': 'chat_message',
-                'message': message_obj.content,
-                # 'user': self.user.id
-            })
+
                 # 'user': message_obj.user_id,
         # Send the message to the group
         await self.channel_layer.group_send(

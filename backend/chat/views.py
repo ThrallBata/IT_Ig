@@ -11,8 +11,8 @@ from rest_framework.renderers import JSONRenderer
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated,])
-@authentication_classes([TokenAuthentication,])
+@permission_classes([IsAuthenticated, ])
+@authentication_classes([TokenAuthentication, ])
 def ChatAPIView(request, chat_id=None):
     try:
         userRecord = User.objects.get(pk=int(request.user.id))

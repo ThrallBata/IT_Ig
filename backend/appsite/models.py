@@ -16,11 +16,6 @@ class Chat(models.Model):
     status_view = models.BooleanField(default=False)
 
 
-# class PersonalChat(Chat):
-#     username = models.BooleanField(default=False)
-
-
-
 class Message(models.Model):
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE, null=True, verbose_name='Чат')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name='Пользователь')

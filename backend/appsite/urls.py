@@ -2,7 +2,6 @@ from django.urls import include, path, re_path
 
 from .views import *
 
-from django.urls import re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -35,7 +34,7 @@ urlpatterns = [
 
 
     path('api/userid/', UserByTokenAPIView.as_view()),
-    path('api/auth/', include('djoser.urls')),
-    re_path(r'^auth/', include('djoser.urls.authtoken')),
+    # path('api/auth/', include('djoser.urls')),
+    # re_path(r'^auth/', include('djoser.urls.authtoken')),
 
 ]

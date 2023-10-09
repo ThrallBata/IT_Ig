@@ -1,9 +1,7 @@
 import json
-from channels.exceptions import DenyConnection
 from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.layers import get_channel_layer
 from channels.db import database_sync_to_async
-from appsite.models import Message, Chat
+from .models import Message, Chat
 
 
 class ChatConsumer(AsyncWebsocketConsumer):

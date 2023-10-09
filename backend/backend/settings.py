@@ -26,6 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_AUTH")
+JWT_TOKEN_LIFETIME = os.environ.get("JWT_TOKEN_LIFETIME")   # hours
+REFRESH_TOKEN_LIFETIME = os.environ.get("REFRESH_TOKEN_LIFETIME")   # days
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,6 +56,8 @@ INSTALLED_APPS = [
 
     'appsite.apps.AppsiteConfig',
     'chat.apps.ChatConfig',
+    'authentication.apps.AuthenticationConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -189,3 +193,9 @@ ADMINS = (
 
     ('admin', 'admin@mysite.com'),
 )
+
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
+
+REDIS_HOST = os.environ.get("REDIS_HOST")
+REDIS_PORT = os.environ.get("REDIS_PORT")

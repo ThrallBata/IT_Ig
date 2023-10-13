@@ -3,7 +3,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from appsite.models import User
 from .serializers import ProfileSerializer, RegistrationSerializer
 from .tasks import send_authcode
 from .utils import *
@@ -14,8 +13,8 @@ class RegistrationAPIView(APIView):
         serializer = RegistrationSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            serializer.create(serializer.data)
+            return Response({'responce': 'You are registered!',}, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

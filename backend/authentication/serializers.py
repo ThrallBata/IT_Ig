@@ -15,12 +15,12 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(max_length=128, write_only=True)
+    password = serializers.CharField(max_length=128)
 
-    # def create(self, validated_data):
-    #     return User.objects.create(**validated_data)
-
-#TODO переопределить пароль абстракт юзер
+    def create(self, validated_data):
+        user = User.objects.create(**validated_data)
+        user.set_password(user.password)
+        user.save()
 
     class Meta:
         model = User

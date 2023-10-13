@@ -2,8 +2,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from .serializers import ProfileSerializer, RegistrationSerializer
+from appsite.models import User
+from .serializers import ProfileSerializer, RegistrationSerializer, AuthenticationSerializer
 from .tasks import send_authcode
 from .utils import *
 
@@ -19,19 +19,23 @@ class RegistrationAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-#TODO переопределить пароль абстракт юзер
+class AuthenticationAPIView(APIView):
+    def post(self, request):   # получения номера телефона, создание и отправка кода
+        serializer = AuthenticationSerializer(data=request.data)
 
-@api_view(['POST'])
-def authenticateAPIView(request):   # получения номера телефона, создание и отправка кода
-    phone = request.data.get('phone')
-    profile_queryset = Profile.object.filter(phone=phone)
+#TODO поставить валидацию телефона в модели
 
-    if redis_auth_code.exists(phone) == 0:
-        authcode = create_auth_code(phone)
-        send_authcode.delay(phone, authcode)
+        if serializer.is_valid():
+            print(serializer.data.get('phone'))
+            phone = serializer.data.get('phone')
+            if User.objects.filter(phone_number=phone).exists() == True:
+                if redis_auth_code.exists(phone) == 0:
+                    authcode = create_auth_code(phone)
+                    send_authcode.delay(phone, authcode)
 
-    return Response({}, status=status.HTTP_200_OK)
-
+                return Response({'responce': 'Code sent'}, status=status.HTTP_200_OK)
+            return Response({'responce': 'Incorrect data'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def authenticate_codeAPIView(request):
@@ -47,7 +51,8 @@ def authenticate_codeAPIView(request):
 
             token = get_tokens(profile.phone)
             return Response(ProfileSerializer(
-                {'phone': profile.phone, 'invite_code': profile.invite_code, 'token': token['jwt'], 'token_refresh': token['refresh']}, ).data)
+                {'phone': profile.phone, 'invite_code': profile.invite_code, 'token': token['jwt'],
+                 'token_refresh': token['refresh']}, ).data)
 
     return Response({'error': 'неверные данные',}, status=status.HTTP_400_BAD_REQUEST)
 

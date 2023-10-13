@@ -10,9 +10,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = User
         fields = ('__all__')
 
-    # def create(self, validated_data):
-    #     return Profile.objects.create_profile(**validated_data)
-
 
 class RegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=128)
@@ -25,3 +22,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'phone_number', 'password')
+
+
+class AuthenticationSerializer(serializers.Serializer):
+    phone = serializers.CharField()

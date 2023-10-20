@@ -3,11 +3,12 @@ from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from appsite.models import Message, User, Chat
+from .models import Message, Chat
+from appsite.models import User
 from .serializers import MessageSerializer, ChatSerializer
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework import status
-from rest_framework.renderers import JSONRenderer
+
 
 
 @api_view(['GET'])
@@ -35,10 +36,4 @@ def ChatAPIView(request, chat_id=None):
             chatRecord = Chat.objects.create(client_id=int(request.user.id))
             Message.objects.create(user_id=1, content="Здравствуйте, можете задать свои вопросы. Работник свяжется с вами в ближайшее время.", chat_id=chatRecord.id)
         return Response(MessageSerializer(Message.objects.filter(chat=int(chatRecord.pk)), many=True).data)
-
-
-
-
-
-
 

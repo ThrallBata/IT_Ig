@@ -2,13 +2,11 @@ from rest_framework import serializers
 from appsite.models import *
 
 
-class ProfileSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.Serializer):
+    phone = serializers.CharField()
     token = serializers.CharField(max_length=255, read_only=True)
     token_refresh = serializers.CharField(max_length=255, read_only=True)
 
-    class Meta:
-        model = User
-        fields = ('__all__')
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -26,3 +24,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 class AuthenticationSerializer(serializers.Serializer):
     phone = serializers.CharField()
+
+
+class AuthenticateCodeSerializer(AuthenticationSerializer):
+    authcode = serializers.CharField()
+

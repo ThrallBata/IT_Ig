@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 
 
 class User(AbstractUser):
     surname = models.CharField(max_length=30, null=True, verbose_name='Отчество')
-    phone_number = models.CharField(max_length=30, unique=True, verbose_name='Номер телефона')
+    phoneRegex = RegexValidator(regex=r"(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))")
+    phone = models.CharField(validators=[phoneRegex], max_length=15, unique=True)
 
     def __str__(self):
         return self.username

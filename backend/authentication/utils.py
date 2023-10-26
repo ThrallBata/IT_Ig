@@ -21,10 +21,10 @@ def create_auth_code(phone):
 
 
 def get_tokens(phone):
-    return {'jwt': token_jwt(phone), 'refresh': token_refresh(phone)}
+    return {'jwt': get_token_jwt(phone), 'refresh': get_token_refresh(phone)}
 
 
-def token_jwt(phone):
+def get_token_jwt(phone):
     lifetime = settings.JWT_TOKEN_LIFETIME
     token = _generate_jwt_token(phone, lifetime)
     redis_jwt.setex(phone, timedelta(hours=int(lifetime)), value=token)
@@ -32,7 +32,7 @@ def token_jwt(phone):
     return token
 
 
-def token_refresh(phone):
+def get_token_refresh(phone):
     days = settings.REFRESH_TOKEN_LIFETIME
     lifetime = int(days) * 24
 

@@ -4,7 +4,7 @@ from rest_framework.test import APITestCase
 
 from appsite.models import User
 
-from authentication.serializers import RegistrationSerializer
+from authentication.utils import redis_auth_code, create_auth_code
 
 
 class RegistrationAPITestCase(APITestCase):
@@ -37,3 +37,39 @@ class AuthenticationAPITestCase(APITestCase):
         self.assertEquals(status.HTTP_400_BAD_REQUEST, responce.status_code)
         self.assertEquals({'responce': 'Incorrect data'}, responce.data)
 
+
+class AuthenticationCodeAPITestCase(APITestCase):
+    def test_post_correct_data(self):
+        url = reverse('verify_code')
+
+        phone = '+79132222237'
+        authcode = create_auth_code(phone)
+
+        data = {'phone': phone, 'authcode': authcode}
+        responce = self.client.post(path=url, data=data)
+
+        self.assertEquals(status.HTTP_200_OK, responce.status_code)
+        self.assertEquals(['phone', 'token', 'token_refresh'], list(responce.data.keys()))
+
+    def test_post_no_correct_data(self):
+        url = reverse('verify_code')
+
+        phone = '+79132222237'
+        authcode = 3333
+
+        data = {'phone': phone, 'authcode': authcode}
+        responce = self.client.post(path=url, data=data)
+
+        self.assertEquals(status.HTTP_400_BAD_REQUEST, responce.status_code)
+        # self.assertEquals(['phone', 'token', 'token_refresh'], list(responce.data.keys()))
+
+    def test_post_no_valid_data(self):
+        url = reverse('verify_code')
+
+        phone = '+79132222237'
+        authcode = 3333
+
+        data = {'p': phone, 'erwqr': authcode}
+        responce = self.client.post(path=url, data=data)
+
+        self.assertEquals(status.HTTP_400_BAD_REQUEST, responce.status_code)

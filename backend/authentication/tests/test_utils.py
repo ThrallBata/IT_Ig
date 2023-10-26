@@ -15,6 +15,7 @@ class UtilsTestCase(TestCase):
         token = get_token_jwt(phone)
         redis_token_jwt = redis_jwt.get(phone).decode("utf-8")
         self.assertEquals(redis_token_jwt, token)
+        self.assertEquals(token.count('.'), 2)
 
     def test_get_token_refresh(self):
         phone = '88005553535'
